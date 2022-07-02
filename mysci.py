@@ -1,4 +1,4 @@
-# Column names
+# Column names column indices
 columns={'date': 0, 'time' : 1,  'tempout' : 2, 'windspeed': 7}
 types={'tempout': float}
 #Initialize my data variable
@@ -13,14 +13,15 @@ with open(filename,"r") as datafile:
     for line in datafile:
         datum = line.split()
 #        data.append(datum)
-        data['date'].append(datum[0])
-        data['time'].append(datum[1])
-        data['tempout'].append(float(datum[2]))
-       # for column in columns:
-       #     i=columns[column]
-       #     t = types.get(column,str)
-       #     value =t(datum[i])
-       #     data[column].append(value)
+#        data['date'].append(datum[0])
+#        data['time'].append(datum[1])
+#        data['tempout'].append(float(datum[2]))
+        for column in columns:
+            i=columns[column]
+            t = types.get(column,str)
+            value =t(datum[i])
+            data[column].append(value)
+
 
 #def estimate_windchill(t,v):
 #    wci= t-0.7*v
