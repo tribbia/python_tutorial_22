@@ -15,7 +15,7 @@ with open(filename,"r") as datafile:
 #        data.append(datum)
         data['date'].append(datum[0])
         data['time'].append(datum[1])
-        data['tempout'].append(datum[2])
+        data['tempout'].append(float(datum[2]))
        # for column in columns:
        #     i=columns[column]
        #     t = types.get(column,str)
@@ -29,4 +29,3 @@ with open(filename,"r") as datafile:
 #windchill=[]
 #for temp, windspeed in zip(data['tempout'], data['windspeed']):
 #    windchill.append(estimate_windchill(temp,windspeed))
-
