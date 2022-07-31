@@ -1,8 +1,9 @@
-# Column names column indices
-columns={'date': 0, 'time' : 1,  'tempout' : 2, 'windspeed': 7}
-types={'tempout': float, 'windspeed': float }
+#Column names column indices
+columns={'date': 0, 'time' : 1,  'tempout' : 2, 'windspeed': 7, 'windchill': 12}
+types={'tempout': float, 'windspeed': float , 'windchill' : float }
 #Initialize my data variable
-data= {'date':[],'time':[],'tempout':[]}
+#data= {'date':[],'time':[],'tempout':[], 'windchill' :[]
+data ={} 
 for column in columns:
     data[column]=[]
 # Read the data file
@@ -12,10 +13,6 @@ with open(filename,"r") as datafile:
        	datafile.readline()
     for line in datafile:
         datum = line.split()
-#        data.append(datum)
-#        data['date'].append(datum[0])
-#        data['time'].append(datum[1])
-#        data['tempout'].append(float(datum[2]))
         for column in columns:
             i=columns[column]
             t = types.get(column,str)
@@ -30,3 +27,7 @@ def estimate_windchill(t,v):
 windchill=[]
 for temp, windspeed in zip(data['tempout'], data['windspeed']):
     windchill.append(estimate_windchill(temp,windspeed))
+
+# DEBUG
+for wc_data, wc_est in zip(data['windchill'], windchill):
+    print(f'{wc_data:.5f}    {wc_est: .5f}    {wc_data - wc_est: .5f}')
