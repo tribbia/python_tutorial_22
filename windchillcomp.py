@@ -1,4 +1,5 @@
 
+from printing import print_comparison
 from readdata import read_data
 
 #Column names column indices
@@ -14,11 +15,4 @@ windchill=[]
 for temp, windspeed in zip(data['tempout'], data['windspeed']):
     windchill.append(estimate_windchill(temp,windspeed))
 # Output comparion of data
-print('                         ORIGINAL     ESTIMATED')
-print('  DATE        TIME       WINDCHILL    WNDCHILL     DIFFERENCE')
-print('  ______     ______      ________     ________     __________')
-
-zip_data = zip(data['date'],data['time'],data['windchill'], windchill)
-for date,time,wc_data, wc_est in zip_data:
-    wc_diff= wc_data - wc_est
-    print(f'  {date}   {time:>6}     {wc_data:9.6f}    {wc_est:9.6f}    {wc_diff:10.6f}') 
+print_comparison('WINDCHILL',data['date'], data['time'], data['windchill'], windchill)
