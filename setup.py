@@ -6,4 +6,5 @@ setup(
     description= " A sample package description",
     author = "Joe Tribbia",
     author_email = "tribbia@ucar.edu",
+    packages=["mysci"],
     install_requires=[])    
